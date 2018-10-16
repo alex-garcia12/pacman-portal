@@ -6,4 +6,7 @@ class Settings():
         self.BLACK = 0, 0, 0
 
         #pacman settings
-        self.pacman_speed = 1
+        self.pacman_speed = 0.0005
+
+        #ghost settings
+        self.ghost_speed = 1

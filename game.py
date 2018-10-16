@@ -3,7 +3,9 @@ import pygame
 from maze import Maze
 from pacman import Pacman
 from settings import Settings
+from ghosts import Pinky
 import game_functions as gf
+from pygame.sprite import Group
 from eventloop import EventLoop
 
 class Game():
@@ -20,6 +22,9 @@ class Game():
         self.maze = Maze(self.screen, mazefile = 'images/maze.txt', brickfile = 'brick',
                          portalfile = 'portal', shieldfile = 'shield', powerpill = 'powerpill')
         self.pacman = Pacman(self.screen, ai_settings)
+        self.ghosts = Group()
+        self.ghost = Pinky(self.screen, ai_settings)
+        self.ghosts.add(self.ghost)
 
     def __str__(self): return 'Game(Pacman Portal), maze=' + str(self.maze) + ')'
 
@@ -31,6 +36,7 @@ class Game():
             eloop.check_events(self.pacman)
             self.update_screen()
             self.pacman.update()
+            self.ghosts.update()
 
     def update_screen(self):
         self.screen.fill(Game.BLACK)
@@ -38,6 +44,7 @@ class Game():
 
         self.maze.blitme()
         self.pacman.blitme()
+        self.ghosts.draw(self.screen)
         pygame.display.flip()
 
 game = Game()

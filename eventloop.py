@@ -20,25 +20,31 @@ class EventLoop:
                 EventLoop.check_keyup_events(event, pacman)
 
     def check_keydown_events(event, pacman):
-        if event.key == pygame.K_RIGHT:  # if the right arrow key is pressed...
-            pacman.moving_right = True  # Set the flag = true to get the ship to move right
+        if event.key == pygame.K_RIGHT:         #if the right arrow key is pressed...
+            pacman.moving_right = True          #Set the flag = true to get pacman to move right
+            pacman.orientation = "Right"
+
         elif event.key == pygame.K_LEFT:
             pacman.moving_left = True
-        elif event.key == pygame.K_UP:  # if the right arrow key is pressed...
-            pacman.moving_up = True  # Set the flag = true to get the ship to move right
+            pacman.orientation = "Left"
+
+        elif event.key == pygame.K_UP:          #if the right arrow key is pressed...
+            pacman.moving_up = True             #Set the flag = true to get the ship to move right
+            pacman.orientation = "Up"
+
         elif event.key == pygame.K_DOWN:
             pacman.moving_down = True
-            # elif event.key == pygame.K_SPACE:                                #when spacebar is pressed...
-            # fire_bullet(ai_settings, screen, ship, bullets)
+            pacman.orientation = "Down"
+
         elif event.key == pygame.K_q:
             sys.exit()
 
     def check_keyup_events(event, pacman):
-        if event.key == pygame.K_RIGHT:  # if the right arrow key is pressed...
-            pacman.moving_right = False  # Set the flag = true to get the ship to move right
+        if event.key == pygame.K_RIGHT:         #if the right arrow key is pressed...
+            pacman.moving_right = False         #Set the flag = true to get the ship to move right
         elif event.key == pygame.K_LEFT:
             pacman.moving_left = False
-        elif event.key == pygame.K_UP:  # if the right arrow key is pressed...
-            pacman.moving_up = False  # Set the flag = true to get the ship to move right
+        elif event.key == pygame.K_UP:          #if the right arrow key is pressed...
+            pacman.moving_up = False            #Set the flag = true to get the ship to move right
         elif event.key == pygame.K_DOWN:
             pacman.moving_down = False
