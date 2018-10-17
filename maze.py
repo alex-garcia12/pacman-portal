@@ -1,11 +1,13 @@
 import pygame
 from imagerect import ImageRect
 
+
 class Maze:
     RED = (255, 0, 0)
-    BRICK_SIZE = 13
+    # BRICK_SIZE = 13
+    BRICK_SIZE = 25
 
-    def __init__(self, screen, mazefile, brickfile, portalfile, shieldfile, powerpill):
+    def __init__(self, screen, mazefile, brickfile):
         self.screen = screen
         self.filename = mazefile
         with open(self.filename, 'r') as f:
@@ -14,7 +16,7 @@ class Maze:
         self.bricks = []
         sz = Maze.BRICK_SIZE
         self.brick = ImageRect(screen, brickfile, sz, sz)
-        self.delta_x = self.delta_y = Maze.BRICK_SIZE
+        self.deltax = self.deltay = Maze.BRICK_SIZE
 
         self.build()
 
@@ -23,7 +25,7 @@ class Maze:
     def build(self):
         r = self.brick.rect
         w, h = r.width, r.height
-        dx, dy = self.delta_x, self.delta_y
+        dx, dy = self.deltax, self.deltay
 
         for nrow in range(len(self.rows)):
             row = self.rows[nrow]

@@ -3,7 +3,7 @@ import pygame
 class ImageRect:
     def __init__(self, screen, imagename, height, width):
         self.screen = screen
-        name = 'images/' + imagename + '.png'
+        name = 'images/' + imagename + '.png'           #change to .gif?
 
         img = pygame.image.load(name)
         img = pygame.transform.scale(img, (height, width))
