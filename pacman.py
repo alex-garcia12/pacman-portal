@@ -2,7 +2,6 @@ import pygame
 from pygame.sprite import Sprite
 from time import sleep
 
-
 class Pacman(Sprite):
     def __init__(self, screen, ai_settings):
         super(Pacman, self).__init__()

@@ -14,7 +14,7 @@ class Menu:
         self.title_image = False
         self.title_image_rect = False
 
-        self.play_button = Button(screen, 'PLAY')
+        self.play_button = Button(screen, 'PLAY GAME')
         self.prep_title(self.title)
 
     def prep_title(self, title):
