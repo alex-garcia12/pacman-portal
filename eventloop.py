@@ -9,7 +9,7 @@ class EventLoop:
     def __str__(self): return 'eventloop, finished=' + str(self.finished) + ')'
 
     @staticmethod
-    def check_events(ai_settings, menu, score_menu, pacman):
+    def check_events(ai_settings, menu, pacman):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -20,9 +20,7 @@ class EventLoop:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_x, mouse_y = pygame.mouse.get_pos()
                 EventLoop.check_play_button(ai_settings, menu, mouse_x, mouse_y)
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                mouse_x, mouse_y = pygame.mouse.get_pos()
-                EventLoop.check_score_button(ai_settings, menu, mouse_x, mouse_y)
+
 
     @staticmethod
     def check_keydown_events(event, pacman):
@@ -62,9 +60,3 @@ class EventLoop:
             # Hide the mouse cursor.
             pygame.mouse.set_visible(False)
             ai_settings.finished = True
-
-    @staticmethod
-    def check_score_button(ai_settings, score_menu, mouse_x, mouse_y):
-        """Starts a new game when the player clicks play"""
-        button_clicked = score_menu.score_button.rect.collidepoint(mouse_x, mouse_y)
-

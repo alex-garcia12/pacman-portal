@@ -20,8 +20,7 @@ class Game:
         self.screen = pygame.display.set_mode((self.ai_settings.screen_width, self.ai_settings.screen_height))
         pygame.display.set_caption("Pacman Portal")
 
-        self.menu = Menu(self.screen, 'Pacman  Portal')
-        self.score_menu = Menu(self.screen, 'HIGH SCORES')
+        self.menu = Menu(self.screen, 'Pacman  Portal', 'HIGH SCORE:')
         self.maze = Maze(self.screen, 'images/maze.txt', 'brick', 'dot', 'powerpill')
         self.pacman = Pacman(self.screen, self.ai_settings)
         self.sb = Scoreboard(self.ai_settings, self.screen)
@@ -40,7 +39,7 @@ class Game:
         self.load_data()
 
         while not eloop.finished:
-            eloop.check_events(self.ai_settings, self.menu, self.score_menu, self.pacman)
+            eloop.check_events(self.ai_settings, self.menu, self.pacman)
             self.pacman.check_dot_collision(self.ai_settings, self.maze.dots, self.maze.pills, self.sb)
             self.sb.check_high_score(self.sb)
             self.update_screen()
@@ -52,9 +51,10 @@ class Game:
 
         if not self.ai_settings.finished:
             self.menu.draw_menu()
+            self.sb.check_high_score(self.sb)
+            self.sb.prep_high_score()
+            self.sb.display_high_score()
 
-            if self.ai_settings.menu_active:
-                self.score_menu.draw_menu()
         else:
             self.maze.blitme()
             self.pacman.blitme()
