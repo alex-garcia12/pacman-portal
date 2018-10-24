@@ -23,7 +23,6 @@ class Pacman(Sprite):
         self.orientation = "Left"
 
         self.rect.centerx = self.screen_rect.centerx
-        # self.rect.centery = self.screen_rect.centery + 10
         self.rect.centery = self.screen_rect.centery - 40
 
         self.center = float(self.rect.centerx)
@@ -75,7 +74,9 @@ class Pacman(Sprite):
 
 
     def center_pacman(self):
-        self.center = self.screen_rect.center
+        self.rect.centerx = self.screen_rect.centerx
+        self.rect.centery = self.screen_rect.centery - 40
+        #self.center = self.screen_rect.center
 
 
     def check_wall_collision(self, bricks):

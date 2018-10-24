@@ -39,7 +39,6 @@ class Menu:
         self.screen.blit(self.title_image, self.title_image_rect)
         self.screen.blit(self.score_menu_image, self.score_menu_image_rect)
         self.play_button.draw_button()
-        #self.score_button.draw_button()
 
 
 class Button:

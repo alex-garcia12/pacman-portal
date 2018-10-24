@@ -1,6 +1,6 @@
 import pygame
 import sys
-
+from time import sleep
 
 class EventLoop:
     def __init__(self, finished):
@@ -60,3 +60,20 @@ class EventLoop:
             # Hide the mouse cursor.
             pygame.mouse.set_visible(False)
             ai_settings.finished = True
+
+    @staticmethod
+    def update_collisions(ai_settings, pacman, ghosts):
+        if pygame.sprite.spritecollideany(pacman, ghosts):
+            EventLoop.pacman_ghost_collide(ai_settings, pacman, ghosts)
+
+    @staticmethod
+    def pacman_ghost_collide(ai_settings, pacman, ghosts):
+        ghost_collision = pygame.sprite.groupcollide(ghosts, pacman, True, True)
+        if ghost_collision:
+            if ai_settings.lives > 0:
+                ai_settings.live -= 1
+
+                pacman.center_pacman()
+                sleep(1)
+            else:
+                EventLoop.finished = True
