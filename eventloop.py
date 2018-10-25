@@ -55,25 +55,29 @@ class EventLoop:
         """Starts a new game when the player clicks play"""
         button_clicked = menu.play_button.rect.collidepoint(mouse_x, mouse_y)
         if button_clicked and not ai_settings.finished:
-            #pygame.mixer.music.play(0)
+            pygame.mixer.music.play(0)
 
             # Hide the mouse cursor.
             pygame.mouse.set_visible(False)
             ai_settings.finished = True
 
     @staticmethod
-    def update_collisions(ai_settings, pacman, ghosts):
+    def update_collisions(ai_settings, pacman, ghosts, maze):
         if pygame.sprite.spritecollideany(pacman, ghosts):
-            EventLoop.pacman_ghost_collide(ai_settings, pacman, ghosts)
+            pygame.mixer.Sound.play(ai_settings.dead)
+            sleep(2)
+            EventLoop.pacman_ghost_collide(ai_settings, pacman, ghosts, maze)
 
     @staticmethod
-    def pacman_ghost_collide(ai_settings, pacman, ghosts):
-        ghost_collision = pygame.sprite.groupcollide(ghosts, pacman, True, True)
-        if ghost_collision:
-            if ai_settings.lives > 0:
-                ai_settings.live -= 1
+    def pacman_ghost_collide(ai_settings, pacman, ghosts, maze):
+        if ai_settings.lives > 0:
+            ai_settings.lives -= 1
+            pacman.center_pacman()
 
-                pacman.center_pacman()
-                sleep(1)
-            else:
-                EventLoop.finished = True
+        else:
+            pacman.center_pacman()
+            maze.blitme()
+            maze.dots = maze.maxdots
+            maze.pills = maze.maxpills
+            ai_settings.finished = False
+            pygame.mouse.set_visible(True)

@@ -1,6 +1,5 @@
 import pygame
 from pygame.sprite import Sprite
-from time import sleep
 
 
 class Pacman(Sprite):
@@ -32,7 +31,6 @@ class Pacman(Sprite):
         self.moving_down = False
 
     def update(self):
-        #sleep(0.00001)
         if self.moving_right and self.rect.right < self.screen_rect.right:
             self.index += 1
             if self.index > 1:
@@ -99,6 +97,7 @@ class Pacman(Sprite):
         counter = 0
         for dot in dots:
             if self.rect.colliderect(dot):
+                pygame.mixer.Sound.play(self.ai_settings.chomp)
                 del dots[counter]
                 self.ai_settings.score += self.ai_settings.dot_points
                 sb.prep_score()
@@ -107,7 +106,7 @@ class Pacman(Sprite):
 
         for pill in pills:
             if self.rect.colliderect(pill):
-                #pygame.mixer.Sound.play(ai_settings.waka)
+                pygame.mixer.Sound.play(self.ai_settings.chomp)
                 del pills[counter]
                 self.ai_settings.score += self.ai_settings.pill_points
                 sb.prep_score()

@@ -15,7 +15,7 @@ from os import path
 
 
 class Game:
-    BLACK = (0, 0, 0)
+    bg_color = (0, 0, 0)
 
     def __init__(self):
         pygame.init()
@@ -42,7 +42,7 @@ class Game:
 
     def load_data(self):
         self.dir = path.dirname(__file__)
-        with open(path.join(self.dir, self.ai_settings.hs_file), 'w') as f:
+        with open(path.join(self.dir, self.ai_settings.hs_file), 'r') as f:
             try:
                 self.ai_settings.high_score = int(f.read())
             except:
@@ -64,10 +64,10 @@ class Game:
             self.clyde.check_wall_collision(self.maze.bricks)
             self.pacman.update()
             self.ghosts.update()
-            eloop.update_collisions(self.ai_settings, self.pacman, self.ghosts)
+            eloop.update_collisions(self.ai_settings, self.pacman, self.ghosts, self.maze)
 
     def update_screen(self):
-        self.screen.fill(Game.BLACK)
+        self.screen.fill(Game.bg_color)
 
         if not self.ai_settings.finished:
             self.menu.draw_menu()
@@ -78,10 +78,7 @@ class Game:
         else:
             self.maze.blitme()
             self.pacman.blitme()
-            self.pinky.blitme()
-            self.inky.blitme()
-            self.blinky.blitme()
-            self.clyde.blitme()
+            self.ghosts.draw(self.screen)
             self.sb.show_score()
 
         pygame.display.flip()

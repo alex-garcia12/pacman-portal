@@ -56,6 +56,9 @@ class Maze:
                 elif col == 'P':
                     self.pills.append(pygame.Rect(ncol * dx, nrow * dy, w, h))
 
+        self.maxdots = self.dots
+        self.maxpills = self.pills
+
     def blitme(self):
         for rect in self.bricks:
             self.screen.blit(self.brick.image, rect)

@@ -9,13 +9,13 @@ class Settings:
         self.BLACK = 0, 0, 0
 
         # Music and Sounds
-        #pygame.mixer.music.load('sounds/maintheme.wav')
-        #self.waka = pygame.mixer.Sound('sounds/waka.wav')
-        #self.dead = pygame.mixer.Sound('sounds/dead.wav')
+        pygame.mixer.music.load('sounds/startup.wav')
+        self.chomp = pygame.mixer.Sound('sounds/chomp.wav')
+        self.dead = pygame.mixer.Sound('sounds/dead.wav')
 
         #pacman settings
         self.pacman_speed = 1
-        self.lives = 2
+        self.lives = 1
 
         #ghost settings
         self.ghost_speed = 1
