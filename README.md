@@ -29,3 +29,9 @@ Doesn't Really Work
 -Portals are not implemented whatsoever
 
 -Extra features such as power pellets, eating ghosts, spawning fruit, etc. from the original game are not implemented.
+
+===============================================================================
+
+![Pac-Man Title Screen](https://cdn.discordapp.com/attachments/489600593741086723/641653795587358720/title.png)
+![Pac-Man Game Start](https://cdn.discordapp.com/attachments/489600593741086723/641653756835921921/game.png)
+![Pac-Man Mid-Game](https://cdn.discordapp.com/attachments/489600593741086723/641653793313783838/game2.png)
